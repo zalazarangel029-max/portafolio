@@ -1,0 +1,1183 @@
+/* ========================================================================== */
+/* 1. Base visual: colores de marca, fuentes y reinicio de estilos             */
+/* ========================================================================== */
+:root {
+  color-scheme: dark;
+  --color-background: #050806;
+  --color-background-soft: #0a100c;
+  --color-panel: #111912;
+  --color-line: rgba(210, 255, 222, 0.13);
+  --color-text: #f4f8f4;
+  --color-muted: #9ba79f;
+  --color-accent: #18ef72;
+  --color-accent-dark: #16b958;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* Hace que las medidas incluyan relleno y bordes en todos los elementos. */
+* {
+  box-sizing: border-box;
+}
+
+/* Mantiene el desplazamiento suave y deja espacio para la barra fija. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+/* Define el fondo, el color principal y la fuente del sitio. */
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* Los enlaces heredan el color del texto salvo que una sección indique otro. */
+a {
+  color: inherit;
+}
+
+/* Los botones usan la misma tipografía que el resto de la página. */
+button {
+  font: inherit;
+}
+
+/* Centra el contenido y limita su ancho en pantallas grandes. */
+.shell {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+
+/* ========================================================================== */
+/* 2. Encabezado y navegación                                                 */
+/* ========================================================================== */
+
+/* Mantiene la navegación arriba y usa negro sólido, como el fondo del logo. */
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  background: rgba(0, 0, 0, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+/* Alinea la marca, los enlaces y el botón del menú en una sola fila. */
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilo compartido de la marca AZS del encabezado y del pie. */
+.brand {
+  color: var(--color-text);
+  text-decoration: none;
+  font: 700 1.65rem var(--font-heading);
+  letter-spacing: -0.08em;
+}
+
+/* Resalta únicamente la Z de AZS con el verde del logo. */
+.brand-z {
+  color: var(--color-accent);
+}
+
+/* Presenta las opciones de navegación en una fila. */
+.nav ul {
+  display: flex;
+  gap: 34px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Enlaces de navegación en gris claro para mantener el contraste. */
+.nav li a {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Pinta de verde la opción al pasar el cursor o enfocarla. */
+.nav li a:hover {
+  color: var(--color-accent);
+}
+
+/* El botón del menú aparece solo en pantallas angostas. */
+.menu-toggle {
+  display: none;
+  border: 0;
+  color: var(--color-text);
+  background: transparent;
+  font-size: 1.25rem;
+}
+
+
+/* ========================================================================== */
+/* 3. Presentación principal                                                   */
+/* ========================================================================== */
+
+/* Ordena el texto y el logo en dos columnas y reserva espacio para el inicio. */
+.hero {
+  min-height: min(790px, calc(100svh - 76px));
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  align-items: center;
+  gap: 44px;
+  padding-block: 90px 105px;
+}
+
+/* Mantiene el texto por encima de los detalles decorativos. */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+/* Etiquetas pequeñas en mayúscula para presentar cada sección. */
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--color-accent);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* Punto verde que indica que el portafolio está activo. */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 14px var(--color-accent);
+}
+
+/* Aplica la fuente de títulos a los encabezados grandes. */
+.hero h1,
+.hero h2,
+.section-heading h2,
+.contact h2 {
+  font-family: var(--font-heading);
+}
+
+/* Título principal de la portada. */
+.hero h1 {
+  margin: 0;
+  font-size: clamp(3.5rem, 7vw, 5.8rem);
+  line-height: 0.99;
+  letter-spacing: -0.07em;
+}
+
+/* El nombre destacado usa el verde de marca. */
+.hero h1 span,
+.section-heading h2 span,
+.contact h2 span {
+  color: var(--color-accent);
+}
+
+/* Presenta la profesión bajo el nombre. */
+.hero h2 {
+  margin: 18px 0 14px;
+  color: #d1e0d2;
+  font-size: clamp(1.35rem, 2.8vw, 2.05rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+/* Mantiene breve la descripción de la portada para no repetir la biografía. */
+.hero-summary {
+  max-width: 510px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.11rem;
+  line-height: 1.75;
+}
+
+/* Coloca los botones principales con separación uniforme. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* Base compartida por botones y enlaces con apariencia de botón. */
+.button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 19px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Eleva suavemente los botones al pasar el cursor. */
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* Botón verde principal con texto oscuro para mejorar la lectura. */
+.button-primary {
+  border-color: var(--color-accent);
+  color: #06120a;
+  background: var(--color-accent);
+}
+
+/* Aclara el verde del botón durante la interacción. */
+.button-primary:hover {
+  border-color: #75ffad;
+  background: #75ffad;
+}
+
+/* Botón secundario transparente con borde discreto. */
+.button-quiet {
+  border-color: var(--color-line);
+  color: var(--color-text);
+  background: transparent;
+}
+
+/* Hace visible el borde del botón secundario al interactuar. */
+.button-quiet:hover {
+  border-color: var(--color-accent);
+}
+
+/* Agrupa correo, Instagram y GitHub en la portada. */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+/* Presenta cada contacto con su icono y texto. */
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #bdcabb;
+  font-size: 0.83rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Usa verde para los iconos sociales. */
+.socials a i {
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+/* Refuerza el estado activo de los enlaces de contacto. */
+.socials a:hover {
+  color: var(--color-accent);
+}
+
+/* Reserva espacio para mostrar el logo de la marca. */
+.hero-visual {
+  min-height: 460px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+/* Muestra el logo grande en la portada. */
+.hero-logo {
+  width: min(100%, 500px);
+  height: auto;
+  position: relative;
+  z-index: 1;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Invitación visual para bajar desde la portada. */
+.scroll-cue {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #7f9382;
+  font-size: 0.76rem;
+  text-decoration: none;
+}
+
+/* Dibuja el indicador vertical del desplazamiento. */
+.scroll-cue span {
+  width: 19px;
+  height: 30px;
+  position: relative;
+  border: 1px solid #54715b;
+  border-radius: 12px;
+}
+
+/* Anima el pequeño indicador dentro del dibujo vertical. */
+.scroll-cue span::after {
+  content: '';
+  width: 2px;
+  height: 6px;
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  animation: scroll-indicator 1.4s infinite;
+}
+
+/* Movimiento breve del indicador de desplazamiento. */
+@keyframes scroll-indicator {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+
+/* ========================================================================== */
+/* 4. Secciones compartidas y biografía                                        */
+/* ========================================================================== */
+
+/* Da espacio vertical a las secciones principales. */
+.section-pad {
+  padding-block: 100px;
+}
+
+/* Diferencia la biografía con una franja oscura apenas más clara. */
+.about {
+  border-block: 1px solid rgba(255, 255, 255, 0.07);
+  background: #080d09;
+}
+
+/* Coloca el título y el texto biográfico en dos columnas. */
+.about-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+  gap: 80px;
+}
+
+/* Títulos de sección con tamaño adaptable. */
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4.8vw, 3.65rem);
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+}
+
+/* Controla el ancho y ritmo del texto biográfico. */
+.about-copy {
+  max-width: 680px;
+  color: #afbeaf;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+/* Separa los párrafos para que sean fáciles de leer. */
+.about-copy p {
+  margin: 0 0 17px;
+}
+
+/* Alinea las etiquetas de tecnologías. */
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+/* Estilo de cada etiqueta de tecnología. */
+.skill-list span {
+  padding: 8px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: 5px;
+  color: #c5d7c6;
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 0.78rem;
+}
+
+
+/* ========================================================================== */
+/* 5. Proyectos y vistas previas                                               */
+/* ========================================================================== */
+
+/* Separa la sección de proyectos del resto del contenido. */
+.projects {
+  background: var(--color-background);
+}
+
+/* Alinea el título de proyectos y su descripción. */
+.projects-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 42px;
+}
+
+/* Texto secundario de la cabecera de proyectos. */
+.projects-heading > p {
+  max-width: 320px;
+  margin: 0 0 5px;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+/* Coloca las tarjetas en una cuadrícula de tres columnas. */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Tarjeta individual de proyecto. */
+.project-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background: linear-gradient(155deg, #111912, #080d09);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Eleva la tarjeta y marca el borde al pasar el cursor. */
+.project-card:hover {
+  border-color: rgba(24, 239, 114, 0.38);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+  transform: translateY(-6px);
+}
+
+/* Imagen que abre la galería del proyecto. */
+.project-preview {
+  width: 100%;
+  height: 225px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  border: 2px 2px 2px 0px ;
+  background: #101a12;
+  cursor: pointer;
+}
+
+/* Degradado inferior para que la indicación de galería sea legible. */
+.project-preview::after {
+  content: '';
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(4, 12, 6, 0.4));
+  pointer-events: none;
+}
+
+/* Recorta las imágenes para llenar el área de vista previa. */
+.project-preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+/* Ajusta las imágenes del kiosco para que se vean completas. */
+.project-card:nth-child(2) .project-preview img {
+  object-fit: contain;
+  background: radial-gradient(ellipse, #153522, #0b120c 75%);
+}
+
+/* Amplía ligeramente la imagen cuando se enfoca una tarjeta. */
+.project-card:hover .project-preview img {
+  transform: scale(1.045);
+}
+
+/* Etiqueta que indica que la imagen se puede ampliar. */
+.preview-hint {
+  position: absolute;
+  z-index: 1;
+  right: 13px;
+  bottom: 13px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 5px 5px 5px 0px;
+  color: #eff7ef;
+  background: rgba(5, 14, 7, 0.68);
+  backdrop-filter: blur(8px);
+  font-size: 0.7rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Muestra la etiqueta al pasar el cursor o usar el teclado. */
+.project-card:hover .preview-hint,
+.project-preview:focus-visible .preview-hint {
+  opacity: 1;
+  transform: none;
+}
+
+/* Contenido de texto de cada tarjeta. */
+.project-info {
+  padding: 22px 22px 24px;
+}
+
+/* Tipo de proyecto y número de orden. */
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #7f9582;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* Número de tarjeta resaltado con el color de marca. */
+.project-number {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+}
+
+/* Nombre del proyecto. */
+.project-info h3 {
+  margin: 14px 0 9px;
+  font: 600 1.28rem var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+/* Descripción del proyecto. */
+.project-info p {
+  min-height: 76px;
+  margin: 0 0 19px;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+/* Botón de galería dentro de cada tarjeta. */
+.project-button {
+  min-height: 41px;
+  padding-inline: 14px;
+  font-size: 0.81rem;
+}
+
+
+/* ========================================================================== */
+/* 6. Contacto y pie de página                                                 */
+/* ========================================================================== */
+
+/* Franja final para invitar a ponerse en contacto. */
+.contact {
+  border-top: 1px solid var(--color-line);
+  background: linear-gradient(130deg, #0b120c, #0c160e);
+}
+
+/* Contenedor del mensaje y los medios de contacto. */
+.contact-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 52px 58px;
+  border: 1px solid rgba(24, 239, 114, 0.16);
+  border-radius: 14px;
+  background: radial-gradient(ellipse at 20% 0%, rgba(22, 185, 88, 0.13), transparent 55%), #080d09;
+}
+
+/* Título destacado de contacto. */
+.contact h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+/* Agrupa los enlaces de correo e Instagram. */
+.contact-links {
+  display: grid;
+  gap: 16px;
+}
+
+/* Estilo de cada enlace de contacto. */
+.contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c3d3c4;
+  font-size: 0.93rem;
+  text-decoration: none;
+}
+
+/* Iconos de contacto en verde. */
+.contact-links i {
+  width: 20px;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+/* Resalta el enlace al interactuar. */
+.contact-links a:hover {
+  color: var(--color-accent);
+}
+
+/* Organiza marca, derechos y regreso al inicio. */
+.footer {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Texto pequeño de derechos de autor. */
+.footer p {
+  color: #768a78;
+  font-size: 0.78rem;
+}
+
+/* Botón circular para volver arriba. */
+.back-top {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+
+/* ========================================================================== */
+/* 7. Pantalla de carga y porcentaje                                           */
+/* ========================================================================== */
+
+/* Cubre la página mientras el porcentaje avanza. */
+#loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: var(--color-text);
+  background: #030503;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+/* Muestra el logo de marca durante la carga. */
+.loader-logo {
+  width: min(290px, 68vw);
+  max-height: 42vh;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 24px rgba(24, 239, 114, 0.12));
+}
+
+/* Mensaje que acompaña el progreso. */
+#loading-label {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.83rem;
+  letter-spacing: 0.07em;
+}
+
+/* Fondo de la barra de progreso. */
+.progress-container {
+  width: 220px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #19251c;
+}
+
+/* Relleno que aumenta según el porcentaje calculado en JavaScript. */
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px rgba(24, 239, 114, 0.5);
+  transition: width 0.075s linear;
+}
+
+/* Porcentaje visible debajo de la barra. */
+.loading-percentage {
+  min-width: 42px;
+  margin: 0;
+  color: var(--color-accent);
+  font: 600 0.85rem var(--font-heading);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Oculta la carga y revela el contenido al llegar al cien por ciento. */
+.loaded #loader {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Transición suave para mostrar la página principal. */
+#main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+/* ========================================================================== */
+/* 8. Galería de imágenes de proyectos                                         */
+/* ========================================================================== */
+
+/* Fondo modal que cubre la página hasta que se abre una galería. */
+.gallery-modal {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Muestra la galería activa. */
+.gallery-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Oscurece la página detrás de la galería. */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 7, 2, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+/* Panel con la imagen y la descripción del proyecto. */
+.modal-panel {
+  width: min(920px, 100%);
+  max-height: min(90vh, 820px);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  overflow: auto;
+  border: 1px solid rgba(183, 215, 184, 0.17);
+  border-radius: 13px;
+  background: #0b120c;
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.53);
+}
+
+/* Botón para cerrar la galería. */
+.modal-close {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  z-index: 4;
+  top: 13px;
+  right: 13px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(4, 12, 5, 0.76);
+  cursor: pointer;
+}
+
+/* Área que contiene la imagen activa y los controles de galería. */
+.modal-image-wrap {
+  min-height: 410px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #101a12;
+}
+
+/* Ajusta la imagen para mostrarla completa dentro del modal. */
+.modal-image-wrap img {
+  width: 100%;
+  height: 100%;
+  max-height: 70vh;
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+}
+
+/* Controles circulares para pasar de una imagen a otra. */
+.gallery-arrow {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(4, 12, 5, 0.7);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+/* Coloca la flecha para volver a la imagen anterior. */
+.gallery-prev {
+  left: 13px;
+}
+
+/* Coloca la flecha para avanzar a la siguiente imagen. */
+.gallery-next {
+  right: 13px;
+}
+
+/* Número de imagen actual en la galería. */
+.image-count {
+  position: absolute;
+  z-index: 2;
+  bottom: 13px;
+  left: 50%;
+  padding: 5px 9px;
+  border-radius: 20px;
+  color: #e6f1e6;
+  background: rgba(4, 12, 5, 0.68);
+  font-size: 0.72rem;
+  transform: translateX(-50%);
+}
+
+/* Alinea el nombre y la información del proyecto. */
+.modal-caption {
+  align-self: center;
+  padding: 42px 30px;
+}
+
+/* Título del proyecto mostrado en la galería. */
+.modal-caption h2 {
+  margin: 0 0 12px;
+  font: 600 1.8rem var(--font-heading);
+  letter-spacing: -0.04em;
+}
+
+/* Texto descriptivo de la galería. */
+.modal-caption > p:not(.eyebrow):not(.modal-note) {
+  margin: 0 0 25px;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* Evita mostrar el botón de sitio cuando un proyecto aún no tiene URL. */
+.modal-site-link[hidden] {
+  display: none;
+}
+
+/* Nota de publicación o disponibilidad debajo de la descripción. */
+.modal-note {
+  margin: 13px 0 0;
+  color: #829782;
+  font-size: 0.77rem;
+  line-height: 1.5;
+}
+
+/* Oculta controles de navegación si la galería tiene una sola imagen. */
+.gallery-arrow[hidden],
+.image-count[hidden] {
+  display: none;
+}
+
+/* Evita que la página de fondo se mueva con la galería abierta. */
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* ========================================================================== */
+/* 9. Accesibilidad y movimiento reducido                                     */
+/* ========================================================================== */
+
+/* Hace visible el elemento enfocado al navegar con el teclado. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Reduce animaciones si la persona indicó preferencia por menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ========================================================================== */
+/* 10. Ajustes para pantallas medianas                                         */
+/* ========================================================================== */
+@media (max-width: 900px) {
+  /* Reduce el espacio entre texto y marca en tabletas. */
+  .hero {
+    gap: 20px;
+  }
+
+  /* Encoge el logo para mantener la composición en dos columnas. */
+  .hero-visual {
+    transform: scale(0.9);
+  }
+
+  /* Distribuye las tarjetas en dos columnas. */
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Da más espacio a la última tarjeta en la segunda fila. */
+  .project-card:last-child {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  /* Mantiene la imagen de la última tarjeta con altura suficiente. */
+  .project-card:last-child .project-preview {
+    min-height: 260px;
+    height: 100%;
+  }
+
+  /* Quita la altura mínima si el texto de la última tarjeta es más corto. */
+  .project-card:last-child .project-info p {
+    min-height: auto;
+  }
+}
+
+
+/* ========================================================================== */
+/* 11. Ajustes para teléfonos                                                  */
+/* ========================================================================== */
+@media (max-width: 680px) {
+  /* Reduce los márgenes laterales para aprovechar el espacio del teléfono. */
+  .shell {
+    width: min(100% - 36px, 520px);
+  }
+
+  /* Reduce la altura de la barra de navegación en móvil. */
+  .nav {
+    min-height: 68px;
+  }
+
+  /* Muestra el botón para abrir el menú móvil. */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Menú desplegable que aparece debajo de la barra. */
+  .nav ul {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 18px 16px;
+    border-bottom: 1px solid var(--color-line);
+    background: #000;
+  }
+
+  /* Muestra las opciones después de tocar el botón del menú. */
+  .nav ul.is-open {
+    display: flex;
+  }
+
+  /* Aumenta el área táctil de cada opción móvil. */
+  .nav li a {
+    display: block;
+    padding: 12px 0;
+  }
+
+  
+  /* Mantiene el texto y el logo lado a lado en la portada móvil. */
+  .hero {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    align-items: start;
+    gap: 10px;
+    padding-block: 48px 72px;
+  }
+
+  /* Reduce el título para que encaje junto al logo. */
+  .hero h1 {
+    font-size: clamp(2.4rem, 9vw, 3.5rem);
+  }
+
+  /* Compacta el subtítulo y el texto para la columna móvil. */
+  .hero h2 {
+    font-size: clamp(0.98rem, 3.8vw, 1.35rem);
+  }
+
+  .hero-summary {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  /* Compacta botones y contactos para la columna de texto. */
+  .hero-actions .button {
+    min-height: 39px;
+    padding-inline: 10px;
+    font-size: 0.74rem;
+  }
+
+  .socials {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .socials a {
+    font-size: 0.68rem;
+  }
+
+  .socials a span {
+    overflow-wrap: anywhere;
+  }
+
+  /* Alinea el logo con el comienzo de la presentación. */
+  .hero-visual {
+    min-height: 0;
+    margin-top: 0;
+    transform: none;
+  }
+
+  /* Mantiene el logo dentro de su columna sin agregarle marco. */
+  .hero-logo {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Reduce el espacio vertical de las secciones en móvil. */
+  .section-pad {
+    padding-block: 72px;
+  }
+
+  /* Apila la biografía en una columna. */
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  /* Coloca la descripción de proyectos debajo del título. */
+  .projects-heading {
+    display: block;
+  }
+
+  /* Separa la descripción del encabezado en móvil. */
+  .projects-heading > p {
+    margin-top: 17px;
+  }
+
+  /* Apila las tarjetas de proyectos. */
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Restaura la tarjeta final a una sola columna. */
+  .project-card:last-child {
+    display: block;
+    grid-column: auto;
+  }
+
+  /* Usa una altura constante para todas las vistas previas. */
+  .project-card:last-child .project-preview {
+    min-height: 0;
+    height: 225px;
+  }
+
+  /* Deja que cada tarjeta crezca según el texto. */
+  .project-info p {
+    min-height: 0;
+  }
+
+  /* Apila mensaje y enlaces de contacto. */
+  .contact-box {
+    display: grid;
+    padding: 34px 25px;
+  }
+
+  /* Acerca los enlaces al encabezado de contacto. */
+  .contact-links {
+    margin-top: 4px;
+  }
+
+  /* Reduce la altura del pie y centra el texto. */
+  .footer {
+    min-height: 76px;
+  }
+
+  /* Evita que el texto del pie quede demasiado ancho. */
+  .footer p {
+    max-width: 205px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Usa más espacio vertical para la galería en móvil. */
+  .gallery-modal {
+    padding: 12px;
+  }
+
+  /* Apila la imagen y su descripción. */
+  .modal-panel {
+    max-height: 94vh;
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajusta el alto de la imagen al espacio disponible. */
+  .modal-image-wrap {
+    min-height: 270px;
+    height: min(45vh, 410px);
+  }
+
+  /* Limita la imagen al alto del panel. */
+  .modal-image-wrap img {
+    max-height: 45vh;
+  }
+
+  /* Reduce el relleno del texto de la galería. */
+  .modal-caption {
+    padding: 24px;
+  }
+
+  /* Reduce el título del proyecto en el modal. */
+  .modal-caption h2 {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+
