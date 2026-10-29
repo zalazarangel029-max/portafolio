@@ -1,141 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portafolio de Angel Zalazar, estudiante y desarrollador de software.">
+  <meta name="theme-color" content="#050806">
   <title>Angel Zalazar | Portafolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-
-  <!-- LOADER -->
-  <div id="loader">
-    <h1 id="typing"></h1>
-    <h2 id="subtyping">AngelSoft</h2> 
-
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
-
-    <p id="percentage">0%</p>
-    <p id="status"></p>
+  <div id="loader" aria-label="Cargando portafolio">
+    <img class="loader-logo" src="assets/angelz-soft-logo.png" alt="AngelZ.Soft">
+    <p id="loading-label">BIEN BENIDO A "ANGELZ.SOFT"</p>
+    <div class="progress-container" role="progressbar" aria-label="Carga del portafolio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progress-bar"></div></div>
+    <p class="loading-percentage" id="loading-percentage" aria-live="polite">0%</p>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
   <div id="main-content">
-    <!-- NAVBAR -->
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#acerca">Acerca</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-      </ul>
-    </nav>
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="Angel Zalazar, inicio">A<span class="brand-z">Z</span>S</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+        <ul id="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#acerca">Acerca de mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <!-- HERO SECTION -->
-    <section id="inicio" class="hero">
-      <div class="hero-text">
-        <h1>Hola, soy Angel</h1>
-        <h2>Desarrollador de Software</h2>
-        <p>Estudiante de desarrollo de software especializado en la creación de sistemas de gestion practicos,eficientes y funcionales, páginas web personalizadas.
-          Apasionado por convertir ideas en soluciones reales utilizando Python, javaScript, HTML, Css y bases de datos SQL.
-        Abierto a oportunidades laborales , trabajos remotos y en constante aprendizaje  </p>
-        <div class="buttons">
-          <a href="#contacto" class="btn">Contratar</a>
-          <a href="cv.pdf" class="btn btn-outline">Descargar CV</a>
+    <main>
+      <section id="inicio" class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> PORTAFOLIO PERSONAL</p>
+          <h1>Hola, soy <span>Angel</span></h1>
+          <h2>Desarrollador de software</h2>
+          <p class="hero-summary">Creo aplicaciones y sitios web para convertir ideas en herramientas útiles.</p>
+          <div class="hero-actions">
+            <a href="#proyectos" class="button button-primary">Ver proyectos <i class="fa-solid fa-arrow-down"></i></a>
+            <a href="mailto:angelz.soft01@gmail.com" class="button button-quiet">Hablemos <i class="fa-regular fa-paper-plane"></i></a>
+          </div>
+          <div class="socials" aria-label="Redes y contacto">
+            <a href="mailto:angelz.soft01@gmail.com" aria-label="Escribir por correo"><i class="fa-regular fa-envelope"></i><span>angelz.soft01@gmail.com</span></a>
+            <a href="https://www.instagram.com/angelz.soft/" target="_blank" rel="noopener noreferrer" aria-label="Instagram angelz.soft"><i class="fa-brands fa-instagram"></i><span>@angelz.soft</span></a>
+            <a href="https://github.com/zalazarangel029-max" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
+          </div>
         </div>
-        <div class="socials">
-  <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="mailto:angel@example.com"><i class="fas fa-envelope"></i></a>
-  <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-</div>
-      </div>
+        <div class="hero-visual">
 
-      <div class="hero-image tech-icons">
-  <i class="fab fa-python"></i>
-  <i class="fab fa-html5"></i>
-  <i class="fab fa-css3-alt"></i>
-  <i class="fab fa-js"></i>
-  <i class="fas fa-database"></i>
-</div>
-        
-      
-    </section>
+          <img class="hero-logo" src="assets/angelz-soft-logo.png" alt="Logo AngelZ.Soft Software">
+        </div>
+        <a class="scroll-cue" href="#acerca"><span></span> Desliza para conocerme</a>
+      </section>
+
+      <section id="acerca" class="about section-pad">
+        <div class="shell about-layout">
+          <div class="section-heading"><p class="eyebrow">UN POCO SOBRE MÍ</p><h2>Acerca de mí<span></span></h2></div>
+          <div class="about-copy">
+            <p>Soy Angel Lautaro Zalazar, estudiante de la Tecnicatura en Desarrollo de Software. Me interesa crear sistemas de gestión y experiencias web que sean prácticas y fáciles de usar.</p>
+            <p>Trabajo con Python, JavaScript, HTML, CSS y bases de datos SQL. Disfruto aprender mientras desarrollo proyectos propios y transformar necesidades cotidianas en soluciones digitales.</p>
+            <div class="skill-list" aria-label="Tecnologías"><span>Python</span><span>JavaScript</span><span>HTML y CSS</span><span>SQL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proyectos" class="projects section-pad">
+        <div class="shell">
+          <div class="section-heading projects-heading"><div><p class="eyebrow">COSAS QUE HE CREADO</p><h2>Mis proyectos<span></span></h2></div><p>Ideas, prácticas y herramientas que fui construyendo en el camino.</p></div>
+          <div class="project-grid">
+            <article class="project-card">
+              <button class="project-preview" type="button" data-project="fideliza" aria-label="Ver imágenes de AngelZ Fideliza"><img src="assets/fideliza-preview.png" alt="Vista previa de AngelZ Fideliza"><span class="preview-hint"><i class="fa-solid fa-expand"></i> Ver galería</span></button>
+              <div class="project-info"><div class="project-meta"><span class="project-type">PLATAFORMA WEB</span><span class="project-number"></span></div><h3>AngelZ Fideliza</h3><p>Billetera digital de puntos y sellos para conectar comercios con sus clientes.</p><button class="button button-primary project-button" type="button" data-project="fideliza">Ver proyecto <i class="fa-solid fa-arrow-right"></i></button></div>
+            </article>
+            <article class="project-card">
+              <button class="project-preview" type="button" data-project="kiosco" aria-label="Ver imágenes de AngelZ Kiosco Manager"><img src="assets/kiosco-bienvenida.png" alt="Pantalla de bienvenida de AngelZ Kiosco Manager"><span class="preview-hint"><i class="fa-solid fa-expand"></i> Ver galería</span></button>
+              <div class="project-info"><div class="project-meta"><span class="project-type">APLICACIÓN DE ESCRITORIO</span><span class="project-number"></span></div><h3>AngelZ Kiosco Manager</h3><p>Aplicación para administrar ventas y productos de kioscos. Se distribuye como archivo ejecutable.</p><button class="button button-primary project-button" type="button" data-project="kiosco">Ver proyecto <i class="fa-solid fa-arrow-right"></i></button></div>
+            </article>
+            <article class="project-card">
+              <button class="project-preview" type="button" data-project="rotyweb" aria-label="Ver imágenes de RotyWeb"><img src="assets/rotyweb-preview.jpg" alt="Vista previa de RotyWeb"><span class="preview-hint"><i class="fa-solid fa-expand"></i> Ver galería</span></button>
+              <div class="project-info"><div class="project-meta"><span class="project-type">PROYECTO ESCOLAR · INCOMPLETO</span><span class="project-number"></span></div><h3>RotyWeb</h3><p>Proyecto escolar de sitio web que quedó sin terminar. Puedes explorar el avance que alcancé a desarrollar.</p><button class="button button-primary project-button" type="button" data-project="rotyweb">Ver proyecto <i class="fa-solid fa-arrow-right"></i></button></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="contact section-pad">
+        <div class="shell contact-box"><div><p class="eyebrow">¿TIENES UNA IDEA?</p><h2>¡Hagámosla<br><span>realidad!.</span></h2></div><div class="contact-links"><a href="mailto:angelz.soft01@gmail.com"><i class="fa-regular fa-envelope"></i> angelz.soft01@gmail.com</a><a href="https://www.instagram.com/angelz.soft/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> @angelz.soft</a></div></div>
+      </section>
+    </main>
+
+    <footer class="footer shell"><a class="brand" href="#inicio">A<span class="brand-z">Z</span>S</a><p>© <span id="year"></span> Angel Zalazar · Hecho con dedicación.</p><a href="#inicio" class="back-top" aria-label="Volver al inicio"><i class="fa-solid fa-arrow-up"></i></a></footer>
+  </div>
+
+  <div class="gallery-modal" id="gallery-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="document">
+      <button class="modal-close" type="button" aria-label="Cerrar galería" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-image-wrap"><button class="gallery-arrow gallery-prev" type="button" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button><img id="modal-image" src="" alt=""><button class="gallery-arrow gallery-next" type="button" aria-label="Imagen siguiente"><i class="fa-solid fa-chevron-right"></i></button><span class="image-count" id="image-count"></span></div>
+      <div class="modal-caption"><p class="eyebrow" id="modal-type"></p><h2 id="modal-title"></h2><p id="modal-description"></p><a class="button button-primary modal-site-link" id="modal-site-link" href="#" target="_blank" rel="noopener noreferrer">Abrir sitio <i class="fa-solid fa-arrow-up-right-from-square"></i></a><p class="modal-note" id="modal-note"></p></div>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-
-
-
-<!-- ACERCA -->
-<section id="acerca" class="acerca">
-
-  <div class="acerca-container">
-
-    <div class="acerca-texto">
-      <h2>Acerca de mí</h2>
-
-      <p>
-        Soy Angel Lautaro Zalazar, estudiante de la Tecnicatura en Desarrollo de Software.
-        Me especializo en la creación de sistemas de gestión prácticos y funcionales,
-        desarrollados con Python, JavaScript, HTML, CSS y bases de datos SQL.
-      </p>
-
-      <p>
-        Me apasiona transformar ideas en soluciones reales que ayuden a negocios
-        y personas a organizar mejor su trabajo mediante la tecnología.
-      </p>
-
-      <p>
-        Actualmente continúo aprendiendo nuevas tecnologías mientras desarrollo
-        proyectos propios para mejorar mis habilidades como programador.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-
-
-<section id="proyectos">
-
-    <h2 class="titulo-seccion">Proyectos</h2>
-
-    <div class="contenedor-proyectos">
-
-        <div class="card-proyecto">
-            <h3>Sistema de Gestión de Kioscos</h3>
-            <p>
-                Sistema desarrollado con Python y SQLite para gestionar ventas,
-                productos y control de stock en kioscos.
-            </p>
-        </div>
-        <div class="card-proyecto">
-    <h3>RotyWeb</h3>
-    <p>
-        Página web desarrollada para mostrar información y contenido
-        de forma moderna y accesible.
-    </p>
-
-    <a href="#" class="btn-proyecto">Ver proyecto</a>
-</div>
-
-        <div class="card-proyecto">
-            <h3>Proyecto en desarrollo</h3>
-            <p>
-                Próximamente agregaré más proyectos mientras continúo aprendiendo
-                desarrollo de software.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
